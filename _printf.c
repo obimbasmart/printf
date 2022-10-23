@@ -43,11 +43,11 @@ int _printf(const char *format, ...)
 						count += write_char('%');
 						break;
 					case '\0':
+						count -= 1;
 						continue;
 					default:
 						count += write_char('%');
 						count += write_char(format[i]);
-						break;
 				}
 				break;
 				/* if format is not a specifier, just write it out*/

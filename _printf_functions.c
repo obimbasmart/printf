@@ -16,9 +16,7 @@ unsigned int write_string(char *str)
 }
 
 /**
- *
  * write_char - function that writes a single character to stdout
- *
  * @ch: character to write
  *
  * Return: int ; always 1`
