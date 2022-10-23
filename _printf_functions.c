@@ -27,6 +27,10 @@ unsigned int write_char(char ch)
 	char *str;
 
 	str = malloc(sizeof(char));
+	if (str == NULL)
+	{
+		return (NULL);
+	}
 	str[0] = ch;
 
 	return (write(1, str, 1));
