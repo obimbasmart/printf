@@ -32,8 +32,9 @@ unsigned int write_char(char ch)
 		return (0);
 	}
 	str[0] = ch;
-
-	return (write(1, str, 1));
+	write(1, str, 1);
+	free(str);
+	return (1);
 
 }
 
