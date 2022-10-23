@@ -14,6 +14,11 @@ int _printf(const char *format, ...)
 	va_list string_args;
 	int i, count;
 
+	if (format == NULL)
+	{
+		return (-1);
+	}
+
 	/* loop through the format specified */
 	va_start(string_args, format);
 	i = 0;
@@ -37,7 +42,11 @@ int _printf(const char *format, ...)
 					case '%':
 						count += write_char('%');
 						break;
+					case '\0':
+						continue;
 					default:
+						count += write_char('%');
+						count += write_char(format[i]);
 						break;
 				}
 				break;
@@ -48,5 +57,6 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
+	va_end(string_args);
 	return (count);
 }
