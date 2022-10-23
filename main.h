@@ -6,6 +6,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 int _printf(const char *format, ...);
 unsigned int write_char(char ch);
