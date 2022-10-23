@@ -29,7 +29,7 @@ unsigned int write_char(char ch)
 	str = malloc(sizeof(char));
 	if (str == NULL)
 	{
-		return (NULL);
+		return (0);
 	}
 	str[0] = ch;
 
