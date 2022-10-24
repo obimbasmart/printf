@@ -59,4 +59,5 @@ unsigned int write_int(long int num, int counter)
 	}
 	counter = write_int(num / 10, counter);
 	counter += write_char((num % 10) + '0');
+	return (counter);
 }
