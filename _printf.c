@@ -1,16 +1,11 @@
 #include "main.h"
-
 /**
  * _printf - function that prints anything - characters and strings
  * @format: the format specifier
- *
  * Return: integer : number of characters printed
  */
-
 int _printf(const char *format, ...)
 {
-
-	/* initialize variables */
 	va_list string_args;
 	int i, count;
 
@@ -18,17 +13,13 @@ int _printf(const char *format, ...)
 	{
 		return (-1);
 	}
-
-	/* loop through the format specified */
 	va_start(string_args, format);
 	i = 0;
 	count = 0;
-
 	while (format[i] != '\0')
 	{
 		switch (format[i])
 		{
-			/* first case checks if character is a format specifier */
 			case '%':
 				i += 1;
 				switch (format[i])
@@ -41,6 +32,10 @@ int _printf(const char *format, ...)
 						break;
 					case '%':
 						count += write_char('%');
+						break;
+					case 'd':
+					case 'i':
+						count = write_int(va_arg(string_args, int), count);
 						break;
 					case '\0':
 						count -= 1;

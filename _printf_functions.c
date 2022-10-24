@@ -38,4 +38,25 @@ unsigned int write_char(char ch)
 
 }
 
-
+/**
+ * write _int - function that writes an integer to stdout
+ * @num: the integer to write
+ * @counter: the initial bytes writting to stdout
+ *
+ * Return: int : number of bytes written + counter
+ */
+unsigned int write_int(long int num, int counter)
+{
+	if (num < 0)
+	{
+		counter += write_char('-');
+		num *= -1;
+	}
+	if (num < 10)
+	{
+		counter += write_char(num + '0');
+		return (counter);
+	}
+	counter = write_int(num / 10, counter);
+	counter += write_char((num % 10) + '0');
+}
