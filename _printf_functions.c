@@ -19,7 +19,7 @@ unsigned int write_string(char *str)
  * write_char - function that writes a single character to stdout
  * @ch: character to write
  *
- * Return: int ; always 1`
+ * Return: int ; always 1unsigned int write_char(char ch)
  */
 unsigned int write_char(char ch)
 {
@@ -39,7 +39,7 @@ unsigned int write_char(char ch)
 }
 
 /**
- * write _int - function that writes an integer to stdout
+ * write_int - function that writes an integer to stdout
  * @num: the integer to write
  * @counter: the initial bytes writting to stdout
  *
@@ -60,4 +60,29 @@ unsigned int write_int(long int num, int counter)
 	counter = write_int(num / 10, counter);
 	counter += write_char((num % 10) + '0');
 	return (counter);
+}
+
+/**
+ * write_binary - print binary representation of unsigned int
+ * @n: unsigned integer num
+ *
+ * Return: number of characters printed to stdout
+ */
+unsigned int write_binary(unsigned long int n)
+{
+	unsigned int len;
+
+	len = 0;
+
+	if (n == 1)
+	{
+		return (write_char('1'));
+	}
+	if (n == 0)
+	{
+		return (write_char('0'));
+	}
+	len += write_binary(n / 2);
+	len += write_char((n % 2) + '0');
+	return (len);
 }

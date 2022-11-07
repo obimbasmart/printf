@@ -37,6 +37,10 @@ int _printf(const char *format, ...)
 					case 'i':
 						count = write_int(va_arg(string_args, int), count);
 						break;
+					/* case for binary format */
+					case 'b':
+						count += write_binary(va_arg(string_args, int));
+						break;
 					case '\0':
 						count -= 1;
 						continue;
