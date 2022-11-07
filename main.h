@@ -14,6 +14,7 @@ unsigned int write_char(char ch);
 unsigned int write_string(char *s);
 unsigned int write_int(long int, int);
 unsigned int write_binary(uint32_t);
+unsigned int write_hexadecimal(uint32_t, char);
 #endif /* MAIN_H_INCLUDED */
 
 

@@ -74,15 +74,52 @@ unsigned int write_binary(uint32_t n)
 
 	len = 0;
 
-	if (n == 1)
+	if (n == 1 || n == 0)
 	{
-		return (write_char('1'));
+		return (write_char(n + '0'));
 	}
-	if (n == 0)
-	{
-		return (write_char('0'));
-	}
+
 	len += write_binary(n / 2);
 	len += write_char((n % 2) + '0');
+	return (len);
+}
+
+/**
+ * write_hexadecimal - prints hexadecimal reps of unsigned int
+ * @n: unsigned interger
+ * @flag: flag signifies if small letter or Capital letter to be used.
+ * x for small letter. X for capital letter
+ *
+ * Return: number of chars printed to stdout
+ */
+unsigned int write_hexadecimal(uint32_t n, char flag)
+{
+	unsigned int len, offset;
+
+	offset = len = 0;
+
+	if (flag == 'x')
+		offset = 32;
+
+	if (n >= 0 && n <= 9)
+		return (write_char(n + '0'));
+
+	switch (n)
+	{
+		case 10:
+			return (write_char('A' + offset));
+		case 11:
+			return (write_char('B' + offset));
+		case 12:
+			return (write_char('C' + offset));
+		case 13:
+			return (write_char('D' + offset));
+		case 14:
+			return (write_char('E' + offset));
+		case 15:
+			return (write_char('E' + offset));
+	}
+	len += write_hexadecimal(n / 16, flag);
+	len += write_hexadecimal((n % 16), flag);
 	return (len);
 }

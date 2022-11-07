@@ -41,6 +41,13 @@ int _printf(const char *format, ...)
 					case 'b':
 						count += write_binary(va_arg(string_args, int));
 						break;
+					/* case for small hexadecimal format */
+					case 'X':
+						count += write_hexadecimal(va_arg(string_args, int), 'X');
+						break;	
+					case 'x':
+						count += write_hexadecimal(va_arg(string_args, int), 'x');
+						break;
 					case '\0':
 						count -= 1;
 						continue;
