@@ -68,7 +68,7 @@ unsigned int write_int(long int num, int counter)
  *
  * Return: number of characters printed to stdout
  */
-unsigned int write_binary(unsigned long int n)
+unsigned int write_binary(uint32_t n)
 {
 	unsigned int len;
 
