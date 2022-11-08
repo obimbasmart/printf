@@ -102,7 +102,7 @@ unsigned int write_hexadecimal(uint32_t n, char flag)
 	if (flag == 'x')
 		offset = 32;
 
-	if (n >= 0 && n <= 9)
+	if (n <= 9)
 		return (write_char(n + '0'));
 
 	switch (n)
