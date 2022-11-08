@@ -118,7 +118,7 @@ unsigned int write_hexadecimal(uint32_t n, char flag)
 		case 14:
 			return (write_char('E' + offset));
 		case 15:
-			return (write_char('E' + offset));
+			return (write_char('F' + offset));
 	}
 	len += write_hexadecimal(n / 16, flag);
 	len += write_hexadecimal((n % 16), flag);
