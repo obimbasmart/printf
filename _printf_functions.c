@@ -63,24 +63,25 @@ unsigned int write_int(long int num, int counter)
 }
 
 /**
- * write_binary - print binary representation of unsigned int
+ * convert_num_to_base - convert an unsigned integer to base base
  * @n: unsigned integer num
+ * @base: new base
  *
  * Return: number of characters printed to stdout
  */
-unsigned int write_binary(uint32_t n)
+unsigned int convert_num_to_base(uint32_t n, unsigned int base)
 {
 	unsigned int len;
 
 	len = 0;
 
-	if (n == 1 || n == 0)
+	if (n >= 0 && n <= (base - 1))
 	{
 		return (write_char(n + '0'));
 	}
 
-	len += write_binary(n / 2);
-	len += write_char((n % 2) + '0');
+	len += convert_num_to_base(n / base, base);
+	len += write_char((n % base) + '0');
 	return (len);
 }
 
@@ -123,3 +124,4 @@ unsigned int write_hexadecimal(uint32_t n, char flag)
 	len += write_hexadecimal((n % 16), flag);
 	return (len);
 }
+
