@@ -75,7 +75,7 @@ unsigned int convert_num_to_base(uint32_t n, unsigned int base)
 
 	len = 0;
 
-	if (n >= 0 && n <= (base - 1))
+	if (n <= (base - 1))
 	{
 		return (write_char(n + '0'));
 	}
