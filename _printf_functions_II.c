@@ -22,7 +22,7 @@ unsigned int write_string_none_printables(char *str)
 		_char = (int)str[i];
 		if ((_char > 0 && _char < 32) || _char >= 127)
 		{
-			nwrite += write(1, _char < 16 ? "\\0x" : "\\x", 2);
+			nwrite += write(1, _char < 16 ? "\\x0" : "\\x", 2);
 			nwrite += write_hexadecimal(_char, 'X');
 		}
 
