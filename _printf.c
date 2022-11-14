@@ -30,6 +30,9 @@ int _printf(const char *format, ...)
 					case 's':
 						count += write_string(va_arg(string_args, char *));
 						break;
+					case 'S':
+						count += write_string_none_printables(va_arg(string_args, char *));
+						break;
 					case '%':
 						count += write_char('%');
 						break;

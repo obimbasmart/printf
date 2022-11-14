@@ -4,7 +4,7 @@
  * write_string - function that writes a string to stdout
  * @str: string to write
  *
- * Return: int ; always 1
+ * Return: number of bytes written to stdout
  */
 unsigned int write_string(char *str)
 {
@@ -19,7 +19,7 @@ unsigned int write_string(char *str)
  * write_char - function that writes a single character to stdout
  * @ch: character to write
  *
- * Return: int ; always 1unsigned int write_char(char ch)
+ * Return: int, always 1;
  */
 unsigned int write_char(char ch)
 {
