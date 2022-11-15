@@ -36,6 +36,8 @@ int _printf(const char *format, ...)
 					case '%':
 						count += write_char('%');
 						break;
+					case 'p':
+						count += write_address(va_arg(string_args, int));
 					case 'd':
 					case 'i':
 						count = write_int(va_arg(string_args, int), count);

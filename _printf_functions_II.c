@@ -34,3 +34,23 @@ unsigned int write_string_none_printables(char *str)
 	}
 	return (nwrite);
 }
+
+/**
+ * write_address - print the address of a variable
+ * @var: the variable
+ *
+ * Return: number of chars written
+ */
+unsigned int write_address(unsigned long int var)
+{
+	size_t nwrite;
+
+	nwrite = 0;
+	if (!var)
+		return (write(1, "(nil)", 5));
+
+	nwrite += write(1, "0x", 2);
+	nwrite += write_hexadecimal(var, 'x');
+	return (nwrite);
+}
+
