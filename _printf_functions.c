@@ -96,30 +96,21 @@ unsigned int convert_num_to_base(uint32_t n, unsigned int base)
 unsigned int write_hexadecimal(uintmax_t n, char flag)
 {
 	unsigned int len, offset;
+	char *chars;
+
+	chars = "0123456789ABCDEF";
 
 	offset = len = 0;
 
 	if (flag == 'x')
 		offset = 32;
 
-	if (n <= 9)
-		return (write_char(n + '0'));
+	if (n < 16)
+		return (write_char(chars[n] > 47 && chars[n] < 58
+				 ? (unsigned int)chars[n]
+				 : chars[n] + offset));
 
-	switch (n)
-	{
-		case 10:
-			return (write_char('A' + offset));
-		case 11:
-			return (write_char('B' + offset));
-		case 12:
-			return (write_char('C' + offset));
-		case 13:
-			return (write_char('D' + offset));
-		case 14:
-			return (write_char('E' + offset));
-		case 15:
-			return (write_char('F' + offset));
-	}
+
 	len += write_hexadecimal(n / 16, flag);
 	len += write_hexadecimal((n % 16), flag);
 	return (len);
