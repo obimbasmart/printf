@@ -93,7 +93,7 @@ unsigned int convert_num_to_base(uint32_t n, unsigned int base)
  *
  * Return: number of chars printed to stdout
  */
-unsigned int write_hexadecimal(uintmax_t n, char flag)
+unsigned int write_hexadecimal(uint32_t n, char flag)
 {
 	unsigned int len, offset;
 	char *chars;
