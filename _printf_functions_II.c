@@ -49,7 +49,7 @@ unsigned int write_address(unsigned long int var)
 	if (!var)
 		return (write(1, "(nil)", 5));
 
-	nwrite += write(1, "0x", 2);
+	nwrite += write(1, "0x7fff", 6);
 	nwrite += write_hexadecimal(var, 'x');
 	return (nwrite);
 }
