@@ -14,7 +14,7 @@ unsigned int write_char(char ch);
 unsigned int write_string(char *s);
 unsigned int write_int(long int, int);
 unsigned int convert_num_to_base(uint32_t n, unsigned int base);
-unsigned int write_hexadecimal(uintmax_t, char);
+unsigned int write_hexadecimal(uint32_t, char);
 unsigned int write_string_none_printables(char *);
 unsigned int write_address(uintmax_t var);
 #endif /* MAIN_H_INCLUDED */
