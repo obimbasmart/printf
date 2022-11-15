@@ -41,7 +41,7 @@ unsigned int write_string_none_printables(char *str)
  *
  * Return: number of chars written
  */
-unsigned int write_address(unsigned long int var)
+unsigned int write_address(uintmax_t var)
 {
 	size_t nwrite;
 
@@ -49,7 +49,7 @@ unsigned int write_address(unsigned long int var)
 	if (!var)
 		return (write(1, "(nil)", 5));
 
-	nwrite += write(1, "0x7fff", 6);
+	nwrite += write(1, "0x", 2);
 	nwrite += write_hexadecimal(var, 'x');
 	return (nwrite);
 }
