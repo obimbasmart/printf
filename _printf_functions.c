@@ -99,7 +99,6 @@ unsigned int write_hexadecimal(uintmax_t n, char flag)
 	char *chars;
 
 	chars = "0123456789ABCDEF";
-	n = uint32_t (n);
 
 	offset = len = 0;
 
