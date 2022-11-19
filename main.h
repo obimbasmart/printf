@@ -24,7 +24,7 @@ typedef struct printf_action
 /* helper functions */
 size_t (*get_func(char fmt))(va_list);
 size_t convert_to_base(long int, int, size_t);
-size_t convert_unsigned_to_base(uint32_t, size_t, size_t);
+size_t convert_unsigned_to_base(uintmax_t, size_t, size_t);
 size_t write_char(va_list);
 size_t _putchar(int);
 size_t _puts(char *);

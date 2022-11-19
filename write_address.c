@@ -18,7 +18,7 @@ size_t write_address(va_list args)
 		return (write(1, "(nil)", 5));
 
 	nwrite += write(1, "0x", 2);
-	nwrite += convert_to_base(var, 16, 1);
+	nwrite += convert_unsigned_to_base(var, 16, 1);
 	return (nwrite);
 }
 
