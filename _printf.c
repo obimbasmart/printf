@@ -36,6 +36,7 @@ int _printf(const char *format, ...)
 				count += p_func(arg_list);
 				continue;
 			}
+			count += _putchar('%');
 			count += _putchar(format[i]);
 		}
 		else
