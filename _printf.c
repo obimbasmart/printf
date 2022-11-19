@@ -16,12 +16,14 @@ int _printf(const char *format, ...)
 	va_start(arg_list, format);
 	i = 0;
 	count = 0;
-
-	for (i = 0; format[i] != '\0'; i += 1)
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			i += 1;
+			if (format[i] == '\0')
+				return (-1);
+
 			if (format[i] == '%')
 			{
 				count += _putchar('%');
@@ -29,17 +31,17 @@ int _printf(const char *format, ...)
 			}
 
 			p_func = get_func(format[i]);
-
 			if (p_func)
 			{
 				count += p_func(arg_list);
 				continue;
 			}
-			_putchar('%');
-			_putchar(format[i]);
+			count += _putchar(format[i]);
 		}
 		else
 			count += _putchar(format[i]);
+
+		i++;
 	}
 
 	return (count);
