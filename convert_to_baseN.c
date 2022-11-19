@@ -13,13 +13,13 @@ size_t convert_to_base(long int num, int base, size_t lowercase)
 	char *chars;
 	size_t nwrite;
 
+	nwrite = 0;
 	if (num < 0 && base == 10)
 	{
 		num *= -1;
-		_putchar('-');
+		nwrite += _putchar('-');
 	}
 
-	nwrite = 0;
 	chars = (lowercase)
 		? "0123456789abcdef"
 		: "0123456789ABCDEF";
