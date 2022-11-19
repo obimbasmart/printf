@@ -15,7 +15,6 @@ size_t write_reversed(va_list args)
 	str = va_arg(args, char *);
 	len = strlen(str);
 
-	len++;
 	while (len--)
 	{
 		nwrite += _putchar(str[len]);
