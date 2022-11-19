@@ -25,7 +25,10 @@ size_t convert_to_base(long int num, int base, size_t lowercase)
 		: "0123456789ABCDEF";
 
 	if (num < base)
-		return (_putchar(chars[num]));
+	{
+		nwrite += _putchar(chars[num]);
+		return (nwrite);
+	}
 
 
 	nwrite += convert_to_base(num / base, base, lowercase);
