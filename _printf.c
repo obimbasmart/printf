@@ -6,76 +6,42 @@
  */
 int _printf(const char *format, ...)
 {
-	va_list string_args;
+	va_list arg_list;
 	int i, count;
+	size_t (*p_func)(va_list);
 
 	if (format == NULL)
-	{
 		return (-1);
-	}
-	va_start(string_args, format);
+
+	va_start(arg_list, format);
 	i = 0;
 	count = 0;
-	while (format[i] != '\0')
+
+	for (i = 0; format[i] != '\0'; i += 1)
 	{
-		switch (format[i])
+		if (format[i] == '%')
 		{
-			case '%':
-				i += 1;
-				switch (format[i])
-				{
-					case 'c':
-						count += write_char(va_arg(string_args, int));
-						break;
-					case 's':
-						count += write_string(va_arg(string_args, char *));
-						break;
-					case 'S':
-						count += write_string_none_printables(va_arg(string_args, char *));
-						break;
-					case '%':
-						count += write_char('%');
-						break;
-					case 'p':
-						count += write_address(va_arg(string_args, unsigned long int));
-						break;
-					case 'd':
-					case 'i':
-						count = write_int(va_arg(string_args, int), count);
-						break;
-					/* case for binary format */
-					case 'b':
-						count += convert_num_to_base(va_arg(string_args, int), 2);
-						break;
-					/* case for small hexadecimal format */
-					case 'X':
-						count += write_hexadecimal(va_arg(string_args, int), 'X');
-						break;
-					case 'x':
-						count += write_hexadecimal(va_arg(string_args, int), 'x');
-						break;
-					/* octal format */
-					case 'o':
-						count += convert_num_to_base(va_arg(string_args, int), 8);
-						break;
-					case 'u':
-						count += convert_num_to_base(va_arg(string_args, int), 10);
-						break;
-					case '\0':
-						count -= 1;
-						continue;
-					default:
-						count += write_char('%');
-						count += write_char(format[i]);
-				}
-				break;
-				/* if format is not a specifier, just write it out*/
-			default:
-				write_char(format[i]);
-				count += 1;
+			i += 1;
+			if (format[i] == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
+
+			p_func = get_func(format[i]);
+
+			if (p_func)
+			{
+				count += p_func(arg_list);
+				continue;
+			}
+			_putchar('%');
+			_putchar(format[i]);
 		}
-		i++;
+		else
+			count += _putchar(format[i]);
 	}
-	va_end(string_args);
+
 	return (count);
 }
+
