@@ -39,11 +39,12 @@ size_t write_int(va_list);
 size_t write_unsigned_int(va_list);
 size_t write_octal(va_list);
 size_t write_reversed(va_list);
+size_t write_rot13(va_list);
+
 /*converters */
 size_t convert_to_base(long int, int, size_t);
 size_t convert_unsigned_to_base(uintmax_t, size_t, size_t);
-
-
+size_t convert_to_rot13(char *);
 
 #endif /* MAIN_H_INCLUDED */
 

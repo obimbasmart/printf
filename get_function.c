@@ -21,11 +21,12 @@ size_t (*get_func(char fmt))(va_list)
 		{ 'X', write_hex_bigLetter },
 		{ 'x', write_hex },
 		{ 'b', write_binary },
-		{ 'r', write_reversed }
+		{ 'r', write_reversed },
+		{ 'R', write_rot13 }
 	};
 	int arr_size, i;
 
-	arr_size = 12;
+	arr_size = 13;
 	i = 0;
 	while (i < arr_size)
 	{
