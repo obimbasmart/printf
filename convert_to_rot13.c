@@ -21,12 +21,16 @@ size_t convert_to_rot13(char *str)
 			if (((ch >= 'A' && ch <= 'Z') ||
 				(ch >= 'a' && ch <= 'z')) && ch == original_str[idxx])
 			{
-				_putchar(roted_str[idxx]);
+				nwrite += _putchar(roted_str[idxx]);
 				break;
 			}
+
 			idxx++;
 		}
-	idx++;
+		if (idxx > 53)
+			nwrite += _putchar(str[idx]);
+
+		idx++;
 	}
 	return (nwrite);
 }
