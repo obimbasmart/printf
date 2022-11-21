@@ -3,10 +3,11 @@
 /**
  * write_char - function that writes a single character to stdout
  * @args: va_list argument list
+ * @flag: struct of flag characters
  *
  * Return: int, always 1;
  */
-size_t write_char(va_list args)
+size_t write_char(va_list args, __attribute__((unused)) flag_t *flag)
 {
 	char ch;
 

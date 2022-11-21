@@ -3,10 +3,11 @@
 /**
  * write_address - print the address of a variable
  * @args: va_list argument list
+ * @flag: struct of flag characters
  *
  * Return: number of chars written
  */
-size_t write_address(va_list args)
+size_t write_address(va_list args, __attribute__((unused)) flag_t *flag)
 {
 	size_t nwrite;
 	uintmax_t var;

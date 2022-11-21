@@ -7,42 +7,43 @@
 int _printf(const char *format, ...)
 {
 	va_list arg_list;
-	int i, count;
-	size_t (*p_func)(va_list);
+	size_t (*p_func)(va_list, flag_t *);
+	size_t count = 0;
+	flag_t flag = { 0, 0, 0 };
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(arg_list, format);
-	count = 0;
-
-	for (i = 0; format[i] != '\0'; i++)
+	for (; *format != '\0'; format++)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-			i += 1;
-			if (format[i] == '\0')
+			format++;
+			if (*format == '\0')
 				return (-1);
 
-			if (format[i] == '%')
+			if (*format == '%')
 			{
 				count += _putchar('%');
 				continue;
 			}
 
-			p_func = get_func(format[i]);
+			while (get_flag(*format, &flag))
+				format++;
+
+			p_func = get_func(*format);
 			if (p_func)
 			{
-				count += p_func(arg_list);
+				count += p_func(arg_list, &flag);
 				continue;
 			}
 			count += _putchar('%');
-			count += _putchar(format[i]);
+			count += _putchar(*format);
 		}
 		else
-			count += _putchar(format[i]);
+			count += _putchar(*format);
 	}
 
 	return (count);
 }
-

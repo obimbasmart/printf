@@ -3,10 +3,11 @@
 /**
  * write_string - function that writes a string to stdout
  * @args: va_list argument list
+ * @flag: struct of flag characters
  *
  * Return: number of bytes written to stdout
  */
-size_t write_string(va_list args)
+size_t write_string(va_list args, __attribute__((unused)) flag_t *flag)
 {
 	char *str;
 

@@ -4,10 +4,12 @@
  * write_string_none_printables - function handles non printable characters
  * when writing strings
  * @args: va_list argument list
+ * @flag: flag characters
  *
  * Return: number of bytes written to output
  */
-size_t write_string_none_printables(va_list args)
+size_t write_string_none_printables(va_list args,
+		 __attribute__((unused)) flag_t *flag)
 {
 	size_t nwrite, i, _char;
 	char *str;

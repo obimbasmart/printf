@@ -3,13 +3,25 @@
 /**
  * write_hex - prints hexadecimal reps of unsigned int in small letters
  * @args: va_list argument list
+ * @flag: struct of flag characters
  *
  * Return: number of chars printed to stdout
  */
-size_t write_hex(va_list args)
+size_t write_hex(va_list args, flag_t *flag)
 {
+	size_t nwrite = 0;
 	uintmax_t num = va_arg(args, unsigned long int);
 
-	return (convert_unsigned_to_base(num, 16, 1));
+	if (flag->hash)
+		nwrite += _puts("0x");
+
+	nwrite += convert_unsigned_to_base(num, 16, 1);
+
+	flag->plus = 0;
+	flag->hash = 0;
+	flag->space = 0;
+
+	return (nwrite);
+
 }
 
