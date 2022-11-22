@@ -20,6 +20,9 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			while (get_flag(*format, &flag))
+				format++;
+
 			if (*format == '\0')
 				return (-1);
 
@@ -28,9 +31,6 @@ int _printf(const char *format, ...)
 				count += _putchar('%');
 				continue;
 			}
-
-			while (get_flag(*format, &flag))
-				format++;
 
 			p_func = get_func(*format);
 			if (p_func)
@@ -44,6 +44,5 @@ int _printf(const char *format, ...)
 		else
 			count += _putchar(*format);
 	}
-
 	return (count);
 }

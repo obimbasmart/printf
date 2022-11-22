@@ -26,7 +26,7 @@ size_t (*get_func(char fmt))(va_list, flag_t *)
 	};
 	int arr_size, i;
 
-	arr_size = 13;
+	arr_size = 14;
 	i = 0;
 	while (i < arr_size)
 	{
