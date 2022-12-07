@@ -9,7 +9,7 @@
  */
 size_t  write_unsigned_int(va_list args, __attribute__((unused)) flag_t *flag)
 {
-	uint32_t num = va_arg(args, int);
+	uintmax_t num = va_arg(args, unsigned long int);
 
 	return (convert_unsigned_to_base(num, 10, 0));
 }

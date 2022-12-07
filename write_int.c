@@ -10,7 +10,7 @@
 size_t  write_int(va_list args, flag_t *flag)
 {
 	size_t nwrite = 0;
-	long int num = va_arg(args, long int);
+	long int num = va_arg(args, int);
 
 	if (flag->plus && num >= 0)
 		nwrite += _putchar('+');

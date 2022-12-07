@@ -10,7 +10,7 @@
 size_t write_octal(va_list args, flag_t *flag)
 {
 	size_t nwrite = 0;
-	uintmax_t num = va_arg(args, unsigned int);
+	uintmax_t num = va_arg(args, unsigned long int);
 
 	if (flag->hash && num > 0)
 		nwrite += _putchar('0');

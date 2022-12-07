@@ -32,7 +32,6 @@ size_t convert_to_base(long int _num, size_t base, size_t lowercase)
 		return (nwrite);
 	}
 
-
 	nwrite += convert_to_base(num / base, base, lowercase);
 	nwrite += _putchar(chars[num % base]);
 	return (nwrite);
