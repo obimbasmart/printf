@@ -9,7 +9,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-
+#define SHORT 10
+#define LONG  100
 /**
  * struct flag - structure representing the three printf flags
  * @plus: + flag
@@ -41,6 +42,7 @@ size_t (*get_func(char fmt))(va_list, flag_t *);
 size_t _putchar(int);
 size_t _puts(char *);
 int get_flag(char, flag_t *);
+int get_length_modifier(char ch);
 
 /* _printf function */
 int _printf(const char *format, ...);

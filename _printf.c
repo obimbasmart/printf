@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "main.h"
 /**
  * _printf - function that prints anything - characters and strings
@@ -10,6 +11,7 @@ int _printf(const char *format, ...)
 	size_t (*p_func)(va_list, flag_t *);
 	size_t count = 0;
 	flag_t flag = { 0, 0, 0 };
+	int length_modifier = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -21,6 +23,11 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			while (get_flag(*format, &flag))
+				format++;
+
+			length_modifier = get_length_modifier(*format);
+
+			if (length_modifier)
 				format++;
 
 			if (*format == '\0')
