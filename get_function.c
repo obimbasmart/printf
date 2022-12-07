@@ -7,7 +7,7 @@
  *
  * Return: pointer to a function that takes a va_list type and returns size_t
  */
-size_t (*get_func(char fmt))(va_list, flag_t *)
+size_t (*get_func(char fmt))(va_list, flag_t *, size_t)
 {
 	p_action arr_funcs[] = {
 		{ 's', write_string },

@@ -8,10 +8,10 @@
 int _printf(const char *format, ...)
 {
 	va_list arg_list;
-	size_t (*p_func)(va_list, flag_t *);
+	size_t (*p_func)(va_list, flag_t *, size_t);
 	size_t count = 0;
 	flag_t flag = { 0, 0, 0 };
-	int length_modifier = 0;
+	size_t length_modifier = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -42,7 +42,7 @@ int _printf(const char *format, ...)
 			p_func = get_func(*format);
 			if (p_func)
 			{
-				count += p_func(arg_list, &flag);
+				count += p_func(arg_list, &flag, length_modifier);
 				continue;
 			}
 			count += _putchar('%');

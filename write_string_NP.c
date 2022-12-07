@@ -5,11 +5,13 @@
  * when writing strings
  * @args: va_list argument list
  * @flag: flag characters
+ * @length_modifier: length modifier for SHORT | LONG
  *
  * Return: number of bytes written to output
  */
 size_t write_string_none_printables(va_list args,
-		 __attribute__((unused)) flag_t *flag)
+		 __attribute__((unused)) flag_t *flag,
+		 __attribute__((unused)) size_t length_modifier)
 {
 	size_t nwrite, i, _char;
 	char *str;

@@ -3,11 +3,10 @@
 /**
  * get_length_modifier - gets the length modifier of a printf func
  * @ch: length character
- * @length_modifier: the lenght modifier
  *
  * Return: integer. 0 on failure. 1 on success
  */
-int get_length_modifier(char ch)
+size_t get_length_modifier(char ch)
 {
 	switch (ch)
 	{

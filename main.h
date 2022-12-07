@@ -33,31 +33,31 @@ typedef struct flag
 typedef struct printf_action
 {
 	char fmt;
-	size_t (*func)(va_list, flag_t *);
+	size_t (*func)(va_list, flag_t *, size_t);
 } p_action;
 
 
 /* helper functions */
-size_t (*get_func(char fmt))(va_list, flag_t *);
+size_t (*get_func(char fmt))(va_list, flag_t *, size_t);
 size_t _putchar(int);
 size_t _puts(char *);
 int get_flag(char, flag_t *);
-int get_length_modifier(char ch);
+size_t get_length_modifier(char ch);
 
 /* _printf function */
 int _printf(const char *format, ...);
-size_t write_char(va_list, flag_t *);
-size_t write_string(va_list, flag_t *);
-size_t write_hex(va_list, flag_t *);
-size_t write_hex_bigLetter(va_list, flag_t *);
-size_t write_binary(va_list, flag_t *);
-size_t write_string_none_printables(va_list, flag_t *);
-size_t write_address(va_list, flag_t *);
-size_t write_int(va_list, flag_t *);
-size_t write_unsigned_int(va_list, flag_t *);
-size_t write_octal(va_list, flag_t *);
-size_t write_reversed(va_list, flag_t *);
-size_t write_rot13(va_list, flag_t *);
+size_t write_char(va_list, flag_t *, size_t len_m);
+size_t write_string(va_list, flag_t *, size_t len_m);
+size_t write_hex(va_list, flag_t *, size_t len_m);
+size_t write_hex_bigLetter(va_list, flag_t *, size_t len_m);
+size_t write_binary(va_list, flag_t *, size_t len_m);
+size_t write_string_none_printables(va_list, flag_t *, size_t len_m);
+size_t write_address(va_list, flag_t *, size_t len_m);
+size_t write_int(va_list, flag_t *, size_t len_m);
+size_t write_unsigned_int(va_list, flag_t *, size_t len_m);
+size_t write_octal(va_list, flag_t *, size_t len_m);
+size_t write_reversed(va_list, flag_t *, size_t len_m_);
+size_t write_rot13(va_list, flag_t *, size_t len_m);
 
 /*converters */
 size_t convert_to_base(long int, size_t, size_t);
