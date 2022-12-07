@@ -60,7 +60,7 @@ size_t write_reversed(va_list, flag_t *);
 size_t write_rot13(va_list, flag_t *);
 
 /*converters */
-size_t convert_to_base(long int, int, size_t);
+size_t convert_to_base(long int, size_t, size_t);
 size_t convert_unsigned_to_base(uintmax_t, size_t, size_t);
 size_t convert_to_rot13(char *);
 

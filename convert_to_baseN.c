@@ -7,7 +7,7 @@
  *
  * Return: number of characters written to STDOUT
  */
-size_t convert_to_base(long int _num, int base, size_t lowercase)
+size_t convert_to_base(long int _num, size_t base, size_t lowercase)
 {
 	char *chars;
 	size_t nwrite;
