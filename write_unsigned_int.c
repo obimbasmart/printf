@@ -14,7 +14,7 @@ size_t  write_unsigned_int(va_list args,
 {
 	uintmax_t num = (length_m == SHORT)
 				? va_arg(args, unsigned int)
-				: va_arg(args, unsigned long int);
+				: va_arg(args, unsigned int);
 
 	return (convert_unsigned_to_base(num, 10, 0));
 }
