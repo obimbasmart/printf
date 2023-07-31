@@ -13,7 +13,7 @@ size_t  write_int(va_list args, flag_t *flag, size_t length_modifier)
 	size_t nwrite = 0;
 	long int num = (length_modifier == SHORT)
 			? va_arg(args, int)
-			: va_arg(args, long int);
+			: va_arg(args, int);
 
 	if (flag->plus && num >= 0)
 		nwrite += _putchar('+');
@@ -21,6 +21,7 @@ size_t  write_int(va_list args, flag_t *flag, size_t length_modifier)
 	else if (flag->space && num >= 0)
 		nwrite += _putchar(' ');
 
+	/* reset flags */
 	flag->plus = 0;
 	flag->hash = 0;
 	flag->space = 0;
