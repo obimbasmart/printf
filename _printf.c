@@ -15,7 +15,6 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-
 	va_start(arg_list, format);
 	for (; *format != '\0'; format++)
 	{
@@ -26,19 +25,15 @@ int _printf(const char *format, ...)
 				format++;
 
 			length_modifier = get_length_modifier(*format);
-
 			if (length_modifier)
 				format++;
-
 			if (*format == '\0')
 				return (-1);
-
 			if (*format == '%')
 			{
 				count += _putchar('%');
 				continue;
 			}
-
 			p_func = get_func(*format);
 			if (p_func)
 			{
