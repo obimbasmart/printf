@@ -1,5 +1,9 @@
-#include <stdio.h>
 #include "main.h"
+#include <stdio.h>
+
+char  *p_buffer;
+p_options_t p_options;
+
 /**
  * _printf - function that prints anything - characters and strings
  * @format: the format specifier
@@ -8,47 +12,59 @@
 int _printf(const char *format, ...)
 {
 	va_list arg_list;
-	size_t (*p_func)(va_list, flag_t *, size_t);
-	size_t count = 0;
-	flag_t flag = { 0, 0, 0 };
-	size_t length_modifier = 0;
+	void (*p_func)(va_list);
+	char *buffer_c;
 
+	p_buffer = malloc(sizeof(char) * BUFFER_SIZE);
+	if (!p_buffer)
+		return (-1);
+	buffer_c = p_buffer;
 	if (format == NULL)
 		return (-1);
-
+	init_printf_data(); /* initialize global vars */
 	va_start(arg_list, format);
 	for (; *format != '\0'; format++)
 	{
 		if (*format == '%')
 		{
 			format++;
-			while (get_flag(*format, &flag))
-				format++;
-
-			length_modifier = get_length_modifier(*format);
-			if (length_modifier)
-				format++;
-
+			get_options(&format);
 			if (*format == '\0')
 				return (-1);
-
 			if (*format == '%')
 			{
-				count += _putchar('%');
+				update_buffer_c('%');
 				continue;
 			}
-
 			p_func = get_func(*format);
 			if (p_func)
 			{
-				count += p_func(arg_list, &flag, length_modifier);
+				p_func(arg_list);
 				continue;
 			}
-			count += _putchar('%');
-			count += _putchar(*format);
-		}
+			update_buffer_c('%');
+			update_buffer_c(*format);
+		} /* end of if */
 		else
-			count += _putchar(*format);
-	}
-	return (count);
+			update_buffer_c(*format);
+	} /* end of for-loop */
+	update_buffer_c(*format);
+	p_buffer = buffer_c;
+	return (_puts(p_buffer));
 }
+
+/**
+ * init_printf_data - initialize all printf global variables
+ *
+ * Return: nothing
+ */
+void init_printf_data(void)
+{
+
+	p_options.flag.plus = 0;
+	p_options.flag.hash = 0;
+	p_options.flag.space = 0;
+	p_options.length_modifier = p_options.field_width = 0;
+	p_options.CASE = 1;
+}
+
