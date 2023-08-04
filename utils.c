@@ -47,7 +47,7 @@ size_t _puts(char *str)
 	 * in this case, _puts should write '\0' to stdout
 	 * but we can't use _strlen function on '\0': that would return 0
 	 */
-	if (str[0] == '\0' && str[1] == '\0')
+	if (str[1] == '\0')
 		str_len = 1;
 
 	if (str == NULL)
