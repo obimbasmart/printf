@@ -36,14 +36,6 @@ _printf is a custom implementation of the the `printf` function in C.It provides
  }
 
 ```
-
-Once the interpreter is running, you can type commands and press Enter to execute them. The interpreter will process the command and perform the appropriate actions
-
-Here are some list of supported commands amongst others:
-- `ls` - List files and directories in the current directory
-- `cd` - Change the current working directory to the specified directory
-- `mkdir` : Create a new directory with the given name. rm
-
 ## File Structure
  - **_printf.c**: This file serves as the entry point of the program. It contains the main printf function that handles the format string parsing and calls the appropriate format specifier functions.
 - **writes.c** (and family): contains functions that handle each format specifier supported by the custom printf. For example, `write_char.c` for `%c`, `write_integer.c` for `%d` and %i, `writes_string.c`  for %s, and so on.
