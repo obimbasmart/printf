@@ -110,6 +110,9 @@ char *convert_unsigned_to_base(uintmax_t num, size_t base, size_t lowercase)
 	char *buffer;
 	int index;
 
+	if (num == 0)
+		return (strdup("0"));
+
 	num_len = index = 0;
 	num_copy = num;
 
