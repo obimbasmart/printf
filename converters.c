@@ -13,7 +13,7 @@ char *convert_to_rot13(char *str)
 	char roted_str[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 	char *buffer;
 
-	buffer = malloc(sizeof(char) * BUFFER_SIZE);
+	buffer = malloc(sizeof(char) * BUFFERSIZE);
 	if (!buffer)
 		return (NULL);
 
@@ -59,7 +59,7 @@ char *convert_to_base(long int _num, int base, size_t lowercase)
 	char *buffer;
 
 	num_len = index = is_negative = 0;
-	buffer = malloc(sizeof(char) * BUFFER_SIZE);
+	buffer = malloc(sizeof(char) * BUFFERSIZE);
 	if (!buffer)
 		return (NULL);
 
@@ -113,7 +113,7 @@ char *convert_unsigned_to_base(uintmax_t num, size_t base, size_t lowercase)
 	num_len = index = 0;
 	num_copy = num;
 
-	buffer = malloc(sizeof(char) * BUFFER_SIZE);
+	buffer = malloc(sizeof(char) * BUFFERSIZE);
 	if (!buffer)
 		return (NULL);
 

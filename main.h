@@ -8,13 +8,11 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define BUFFER_SIZE 1024
+#define BUFFERSIZE 1024
 #define SHORT 10
 #define LONG  100
 #define LOWERCASE 1
 #define UPPERCASE 0
-
-extern char *p_buffer; /* variable to hold the content of printf */
 
 /**
  * struct flag - structure representing the three printf flags
@@ -30,24 +28,37 @@ typedef struct flag
 } flag_t;
 
 /**
- * struct print_specifiers - hold extra option/specifiers for printf
+ * struct printf_global_vars - hold extra format specifiers
+ * and global varaibles for printf
+ *
  * @flag: struct: flag characters
  * @length_modifier: length modifier
  * @field_width: minimun field width
+ *
  * @CASE: specifies if lowercase or uppercase for hexadecimal values
+ * @BUFFER_SIZE: number of bytes allocated to p_buffer
+ *
+ * @p_count: this is used to track the index of the next char to write to
+ * for each write to buffer, p_count is increamented accordinly
+ * and can also be used to denote the number of characters written to buffer
+ * @buffer: pointer to characters of size @BUFFER_SIZE
  *
  * Description: Each member of this struct represents some extra
  * format specifiers passed to printf
  */
-typedef struct print_specifiers
+typedef struct printf_global_vars
 {
 	flag_t flag;
 	size_t length_modifier;
 	size_t field_width;
 	size_t CASE;
-} p_options_t;
+	size_t BUFFER_SIZE;
+	size_t p_count;
+	char *buffer;
+} p_data_t;
 
-extern p_options_t p_options;
+extern p_data_t p_data;
+
 /**
  * struct printf_action - structure representing a printf
  * format specifier
@@ -74,6 +85,10 @@ size_t _strlen(char *);
 size_t _puts(char *);
 void update_buffer_c(char ch);
 void update_buffer(char *str);
+
+/* memory management */
+void memcheck(void);
+void *_realloc(void *ptr, unsigned int prev_size, unsigned int curr_size);
 
 /* _printf function */
 int _printf(const char *format, ...);

@@ -20,7 +20,7 @@ void write_address(va_list args)
 	}
 
 	update_buffer("0x");
-	str_var = convert_unsigned_to_base(var, 16, p_options.CASE);
+	str_var = convert_unsigned_to_base(var, 16, p_data.CASE);
 	update_buffer(str_var);
 	free(str_var);
 }

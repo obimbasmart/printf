@@ -12,7 +12,7 @@ void write_binary(va_list args)
 
 	uint32_t num = va_arg(args, int);
 
-	str_num = convert_unsigned_to_base(num, 2, p_options.CASE);
+	str_num = convert_unsigned_to_base(num, 2, p_data.CASE);
 	update_buffer(str_num);
 	free(str_num);
 }
@@ -42,25 +42,25 @@ void write_hex(va_list args)
 {
 	char *str_num;
 
-	uintmax_t num = (p_options.length_modifier == SHORT)
+	uintmax_t num = (p_data.length_modifier == SHORT)
 		? va_arg(args, unsigned int)
 		: va_arg(args, unsigned int);
 
-	if (p_options.flag.hash && num > 0)
+	if (p_data.flag.hash && num > 0)
 	{
-		if (p_options.CASE == LOWERCASE)
+		if (p_data.CASE == LOWERCASE)
 			update_buffer("0x");
 		else
 			update_buffer("0X");
 	}
 
-	str_num = convert_unsigned_to_base(num, 16, p_options.CASE);
+	str_num = convert_unsigned_to_base(num, 16, p_data.CASE);
 	update_buffer(str_num);
 	free(str_num);
 
-	p_options.flag.plus = 0;
-	p_options.flag.hash = 0;
-	p_options.flag.space = 0;
+	p_data.flag.plus = 0;
+	p_data.flag.hash = 0;
+	p_data.flag.space = 0;
 
 }
 
@@ -74,12 +74,12 @@ void write_octal(va_list args)
 {
 	char *str_num;
 
-	uintmax_t num = (p_options.length_modifier == SHORT)
+	uintmax_t num = (p_data.length_modifier == SHORT)
 		? va_arg(args, unsigned int)
 		: va_arg(args, unsigned int);
 
 
-	if (p_options.flag.hash && num > 0)
+	if (p_data.flag.hash && num > 0)
 		update_buffer_c('0');
 
 	str_num = convert_unsigned_to_base(num, 8, 0);

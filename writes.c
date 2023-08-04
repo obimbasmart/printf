@@ -10,20 +10,20 @@ void  write_int(va_list args)
 {
 	char *str_num;
 
-	long int num = (p_options.length_modifier == SHORT)
+	long int num = (p_data.length_modifier == SHORT)
 		? va_arg(args, int)
 		: va_arg(args, int);
 
-	if (p_options.flag.plus && num >= 0)
+	if (p_data.flag.plus && num >= 0)
 		update_buffer_c('+');
 
-	else if (p_options.flag.space && num >= 0)
+	else if (p_data.flag.space && num >= 0)
 		update_buffer_c(' ');
 
 	/* reset flags */
-	p_options.flag.plus = 0;
-	p_options.flag.hash = 0;
-	p_options.flag.space = 0;
+	p_data.flag.plus = 0;
+	p_data.flag.hash = 0;
+	p_data.flag.space = 0;
 
 	str_num = convert_to_base(num, 10, 0);
 	update_buffer(str_num);
@@ -39,7 +39,7 @@ void write_unsigned_int(va_list args)
 {
 	char *str_num;
 
-	uintmax_t num = (p_options.length_modifier == SHORT)
+	uintmax_t num = (p_data.length_modifier == SHORT)
 		? va_arg(args, unsigned int)
 		: va_arg(args, unsigned int);
 
@@ -99,7 +99,10 @@ void write_str(va_list args)
 
 	str = va_arg(args, char *);
 	if (str == NULL)
+	{
 		update_buffer("(null)");
+		return;
+	}
 
 	update_buffer(str);
 }

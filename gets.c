@@ -47,13 +47,13 @@ void get_options(const char **str)
 	while (get_flag(**str))
 		(*str)++;
 
-	p_options.length_modifier = get_length_modifier(**str);
-	if (p_options.length_modifier)
+	p_data.length_modifier = get_length_modifier(**str);
+	if (p_data.length_modifier)
 		(*str)++;
 
-	p_options.field_width = get_field_width(*str);
+	p_data.field_width = get_field_width(*str);
 	if (**str == 'X')
-		p_options.CASE = UPPERCASE;
+		p_data.CASE = UPPERCASE;
 }
 
 /**
@@ -104,13 +104,13 @@ int get_flag(char ch)
 	switch (ch)
 	{
 		case '+':
-			p_options.flag.plus = 1;
+			p_data.flag.plus = 1;
 			return (1);
 		case '#':
-			p_options.flag.hash = 1;
+			p_data.flag.hash = 1;
 			return (1);
 		case ' ':
-			p_options.flag.space = 1;
+			p_data.flag.space = 1;
 			return (1);
 		default:
 			return (0);
