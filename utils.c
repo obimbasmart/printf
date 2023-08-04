@@ -38,10 +38,22 @@ void update_buffer(char *str)
  */
 size_t _puts(char *str)
 {
+	size_t str_len = _strlen(str);
+
+	/**
+	 * check for this edge case where
+	 * the first character is '\0'
+	 * and the last character is '\0'
+	 * in this case, _puts should write '\0' to stdout
+	 * but we can't use _strlen function on '\0': that would return 0
+	 */
+	if (str[0] == '\0' && str[1] == '\0')
+		str_len = 1;
+
 	if (str == NULL)
 		return (write(STDOUT_FILENO, "(null)", 6));
 
-	return (write(STDOUT_FILENO, str, _strlen(str)));
+	return (write(STDOUT_FILENO, str, str_len));
 }
 
 /**
