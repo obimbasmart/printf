@@ -76,8 +76,8 @@ typedef struct printf_action
 void (*get_func(char fmt))(va_list);
 int get_flag(char ch);
 size_t get_length_modifier(char ch);
-size_t get_field_width(const char **ch);
-void get_options(const char **str);
+size_t get_field_width(const char **ch, va_list arg_list);
+void get_options(const char **str, va_list args_list);
 void init_printf_data(void);
 size_t _strlen(char *);
 

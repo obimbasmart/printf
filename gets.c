@@ -39,10 +39,11 @@ void (*get_func(char fmt))(va_list args)
 /**
  * get_options - gets all options for printf such flag, width, length modifier
  * @str: pointer to char
+ * @arg_list: variadic list of args pass to _printf
  *
  * Return: nothing
  */
-void get_options(const char **str)
+void get_options(const char **str, va_list arg_list)
 {
 	while (get_flag(**str))
 		(*str)++;
@@ -51,7 +52,7 @@ void get_options(const char **str)
 	if (p_data.length_modifier)
 		(*str)++;
 
-	p_data.field_width = get_field_width(str);
+	p_data.field_width = get_field_width(str, arg_list);
 	if (**str == 'X')
 		p_data.CASE = UPPERCASE;
 }
@@ -78,12 +79,19 @@ size_t get_length_modifier(char ch)
 /**
  * get_field_width - get the field width for print function
  * @str: width char
+ * @arg_list: variadic list of args passed to _printf
  *
  * Return: integer, length of field
  */
-size_t get_field_width(const char **str)
+size_t get_field_width(const char **str, va_list arg_list)
 {
 	size_t width, width_copy;
+
+	if (**str == '*')
+	{
+		(*str)++;
+		return (va_arg(arg_list, unsigned int));
+	}
 
 	width = atoi(*str);
 	width_copy = width;

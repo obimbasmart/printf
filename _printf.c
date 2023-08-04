@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			get_options(&format);
+			get_options(&format, arg_list);
 			if (*format == '\0')
 				return (-1);
 
