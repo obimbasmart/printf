@@ -25,7 +25,7 @@ void  write_int(va_list args)
 	p_data.flag.hash = 0;
 	p_data.flag.space = 0;
 
-	str_num = convert_to_base(num, 10, 0);
+	str_num = convert_to_base(num, 10, LOWERCASE);
 	update_buffer(str_num);
 	free(str_num);
 }

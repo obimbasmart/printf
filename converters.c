@@ -52,11 +52,13 @@ char *convert_to_rot13(char *str)
  */
 char *convert_to_base(long int _num, int base, size_t lowercase)
 {
-	char *digits;
+	char *digits, *buffer;
 	size_t num_len; /* length of number */
 	int is_negative, index;
 	unsigned long int num, num_copy;
-	char *buffer;
+
+	if (_num == 0)
+		return (strdup("0"));
 
 	num_len = index = is_negative = 0;
 	buffer = malloc(sizeof(char) * BUFFERSIZE);
@@ -71,22 +73,20 @@ char *convert_to_base(long int _num, int base, size_t lowercase)
 	}
 
 	num_copy = num;
-	/* get the length of the number */
-	while (num_copy)
+	while (num_copy) /* get the length of the number */
 	{
 		num_copy /= base;
 		num_len++;
 	}
 
 	digits = (lowercase) ? "0123456789abcdef" : "0123456789ABCDEF";
-
 	num_copy = num; /* re-update num_copy */
+
 	for (index = (num_len - 1 + is_negative); index >= is_negative; index--)
 	{
 		buffer[index] = digits[num_copy % base];
 		num_copy /= base;
 	}
-
 	if (is_negative)
 		buffer[0] = '-';
 
