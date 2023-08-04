@@ -51,7 +51,7 @@ void get_options(const char **str)
 	if (p_data.length_modifier)
 		(*str)++;
 
-	p_data.field_width = get_field_width(*str);
+	p_data.field_width = get_field_width(str);
 	if (**str == 'X')
 		p_data.CASE = UPPERCASE;
 }
@@ -77,18 +77,21 @@ size_t get_length_modifier(char ch)
 
 /**
  * get_field_width - get the field width for print function
- * @ch: width char
+ * @str: width char
  *
  * Return: integer, length of field
  */
-size_t get_field_width(const char *ch)
+size_t get_field_width(const char **str)
 {
-	size_t width = 0;
+	size_t width, width_copy;
 
-	while (*ch >= '0' && *ch <= '9')
+	width = atoi(*str);
+	width_copy = width;
+
+	while (width_copy)
 	{
-		width += *ch - '0';
-		ch++;
+		width_copy /= 10;
+		(*str)++;
 	}
 	return (width);
 }

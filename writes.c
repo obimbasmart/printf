@@ -16,17 +16,18 @@ void  write_int(va_list args)
 
 	if (p_data.flag.plus && num >= 0)
 		update_buffer_c('+');
-
 	else if (p_data.flag.space && num >= 0)
 		update_buffer_c(' ');
 
-	/* reset flags */
-	p_data.flag.plus = 0;
-	p_data.flag.hash = 0;
-	p_data.flag.space = 0;
-
 	str_num = convert_to_base(num, 10, LOWERCASE);
+
+	if (p_data.field_width > _strlen(str_num))
+		write_field_width(p_data.field_width - _strlen(str_num));
+
 	update_buffer(str_num);
+
+	/* reset flags */
+	reset_global_data();
 	free(str_num);
 }
 /**
@@ -44,7 +45,11 @@ void write_unsigned_int(va_list args)
 		: va_arg(args, unsigned int);
 
 	str_num = convert_unsigned_to_base(num, 10, 0);
+	if (p_data.field_width > _strlen(str_num))
+		write_field_width(p_data.field_width - _strlen(str_num));
+
 	update_buffer(str_num);
+	reset_global_data();
 	free(str_num);
 }
 
@@ -103,8 +108,11 @@ void write_str(va_list args)
 		update_buffer("(null)");
 		return;
 	}
+	if (p_data.field_width > _strlen(str))
+		write_field_width(p_data.field_width - _strlen(str));
 
 	update_buffer(str);
+	reset_global_data();
 }
 
 /**

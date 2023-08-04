@@ -13,7 +13,11 @@ void write_binary(va_list args)
 	uint32_t num = va_arg(args, int);
 
 	str_num = convert_unsigned_to_base(num, 2, p_data.CASE);
+	if (p_data.field_width > _strlen(str_num))
+		write_field_width(p_data.field_width - _strlen(str_num));
+
 	update_buffer(str_num);
+	reset_global_data();
 	free(str_num);
 }
 
@@ -28,7 +32,11 @@ void write_char(va_list args)
 	char ch;
 
 	ch = va_arg(args, int);
+	if (p_data.field_width > 1)
+		write_field_width(p_data.field_width - 1);
+
 	update_buffer_c(ch);
+	reset_global_data();
 }
 
 
@@ -55,13 +63,12 @@ void write_hex(va_list args)
 	}
 
 	str_num = convert_unsigned_to_base(num, 16, p_data.CASE);
+	if (p_data.field_width > _strlen(str_num))
+		write_field_width(p_data.field_width - _strlen(str_num));
+
 	update_buffer(str_num);
+	reset_global_data();
 	free(str_num);
-
-	p_data.flag.plus = 0;
-	p_data.flag.hash = 0;
-	p_data.flag.space = 0;
-
 }
 
 /**
@@ -83,7 +90,11 @@ void write_octal(va_list args)
 		update_buffer_c('0');
 
 	str_num = convert_unsigned_to_base(num, 8, 0);
+	if (p_data.field_width > _strlen(str_num))
+		write_field_width(p_data.field_width - _strlen(str_num));
+
 	update_buffer(str_num);
+	reset_global_data();
 	free(str_num);
 }
 
