@@ -21,11 +21,12 @@ void (*get_func(char fmt))(va_list args)
 		{ 'X', write_hex },
 		{ 'x', write_hex },
 		{ 'b', write_binary },
-		{ 'R', write_rot13 }
+		{ 'R', write_rot13 },
+		{ 'r', write_reversed }
 	};
 	int arr_size, i;
 
-	arr_size = 12;
+	arr_size = 13;
 	i = 0;
 	while (i < arr_size)
 	{
