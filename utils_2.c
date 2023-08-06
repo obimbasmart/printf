@@ -1,17 +1,29 @@
 #include "main.h"
 
 /**
- * write_field_width - update buffer if field width is specified
- * @field_width: length of padding
+ * write_format_specifer - update field_width or precision is specified
+ * @len: length of specifier to be written
+ * @fmt: format, '0' or ' '
  *
  * Return: nothing
  */
-void write_field_width(size_t field_width)
+void write_format_specifer(size_t len, char fmt)
 {
-	while (field_width--)
-		update_buffer_c(' ');
+	while (len--)
+		update_buffer_c(fmt);
 }
 
+/**
+ * write_precision - append more characters if precision is specified
+ * @precision: precision length
+ *
+ * Return: nothing
+ */
+void write_precision(size_t precision)
+{
+	while (precision--)
+		update_buffer_c('0');
+}
 /**
  * reset_global_data - reset global variables
  *

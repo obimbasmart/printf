@@ -54,6 +54,7 @@ void get_options(const char **str, va_list arg_list)
 		(*str)++;
 
 	p_data.field_width = get_field_width(str, arg_list);
+	p_data.precision = get_precision(str, arg_list);
 	if (**str == 'X')
 		p_data.CASE = UPPERCASE;
 }

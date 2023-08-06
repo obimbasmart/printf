@@ -43,6 +43,8 @@ typedef struct flag
  * and can also be used to denote the number of characters written to buffer
  * @buffer: pointer to characters of size @BUFFER_SIZE
  *
+ * @precision: minimum number of characters to be printed
+ *
  * Description: Each member of this struct represents some extra
  * format specifiers passed to printf
  */
@@ -51,6 +53,7 @@ typedef struct printf_global_vars
 	flag_t flag;
 	size_t length_modifier;
 	size_t field_width;
+	size_t precision;
 	size_t CASE;
 	size_t BUFFER_SIZE;
 	size_t p_count;
@@ -80,6 +83,7 @@ size_t get_field_width(const char **ch, va_list arg_list);
 void get_options(const char **str, va_list args_list);
 void init_printf_data(void);
 size_t _strlen(char *);
+size_t get_precision(const char **str, va_list arg_list);
 
 /* utility functions */
 size_t _puts(char *);
@@ -87,6 +91,8 @@ void update_buffer_c(char ch);
 void update_buffer(char *str);
 void write_field_width(size_t field_width);
 void reset_global_data(void);
+void write_precision(size_t precision);
+void write_format_specifer(size_t len, char fmt);
 
 /* memory management */
 void memcheck(void);

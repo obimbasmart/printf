@@ -22,7 +22,9 @@ void  write_int(va_list args)
 	str_num = convert_to_base(num, 10, LOWERCASE);
 
 	if (p_data.field_width > _strlen(str_num))
-		write_field_width(p_data.field_width - _strlen(str_num));
+		write_format_specifer(p_data.field_width - _strlen(str_num), ' ');
+	if (p_data.precision > _strlen(str_num))
+		write_format_specifer(p_data.precision - _strlen(str_num), '0');
 
 	update_buffer(str_num);
 
@@ -46,7 +48,10 @@ void write_unsigned_int(va_list args)
 
 	str_num = convert_unsigned_to_base(num, 10, 0);
 	if (p_data.field_width > _strlen(str_num))
-		write_field_width(p_data.field_width - _strlen(str_num));
+		write_format_specifer(p_data.field_width - _strlen(str_num), ' ');
+	
+	if (p_data.precision > _strlen(str_num))
+		write_format_specifer(p_data.precision - _strlen(str_num), '0');
 
 	update_buffer(str_num);
 	reset_global_data();
@@ -109,7 +114,10 @@ void write_str(va_list args)
 		return;
 	}
 	if (p_data.field_width > _strlen(str))
-		write_field_width(p_data.field_width - _strlen(str));
+		write_format_specifer(p_data.field_width - _strlen(str), ' ');
+
+	if (p_data.precision < _strlen(str))
+		str[_strlen(str) - p_data.precision] = '\0';
 
 	update_buffer(str);
 	reset_global_data();
