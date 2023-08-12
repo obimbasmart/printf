@@ -8,7 +8,7 @@
  */
 void  write_int(va_list args)
 {
-	char *str_num;
+	char *str_num, *str_num_copy;
 
 	long int num = (p_data.length_modifier == SHORT)
 		? va_arg(args, int)
@@ -23,6 +23,13 @@ void  write_int(va_list args)
 
 	if (p_data.field_width > _strlen(str_num))
 		write_format_specifer(p_data.field_width - _strlen(str_num), ' ');
+
+	if (str_num[0] == '-')
+	{
+		update_buffer_c('-');
+		str_num_copy = str_num;
+		str_num++;
+	}
 	if (p_data.precision > _strlen(str_num))
 		write_format_specifer(p_data.precision - _strlen(str_num), '0');
 
@@ -30,7 +37,7 @@ void  write_int(va_list args)
 
 	/* reset flags */
 	reset_global_data();
-	free(str_num);
+	free(str_num_copy);
 }
 /**
  * write_unsigned_int - copy argument to printf_buffer
